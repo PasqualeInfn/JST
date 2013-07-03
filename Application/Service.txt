@@ -1,0 +1,80 @@
+The application called "FrontEnd" was written in Java using the components Jersey; in particular the framework JAX-RS and Java 6 SDK.
+
+The FrontEnd is a RESTful webservices: services that are built to work best on the web.
+Representational State Transfer (REST) is an architectural style that specifies constraints, such as the uniform interface, that if applied to a web service induce desirable properties, such as performance, scalability, and modifiability, that enable services to work best on theWeb.
+In the REST architectural style, data and functionality are considered resources, and these resources are accessed using Uniform Resource Identifiers (URIs), typically links on the web.
+The resources are acted upon by using a set of simple, well-defined operations.
+
+The REST architectural style constrains an architecture to a client-server architecture, and is designed to use a stateless communication protocol, typically HTTP.
+In the REST architecture style, clients and servers exchange representations of resources using a standardized interface and protocol.
+These principles encourages RESTful applications to be simple, lightweight, and have high performance.
+
+One of the advantages of the use of REST is also the independence from the clients ensuring a high portability and scalability.
+
+Authentication is done on a temporary user database, requiring only "username" and "password", but it will be possible in the future to set up to new authentication mechanism without changing the interface exposed to the users. It can also be specified in the configuration file if authentication is required or not.
+
+The methods currently present in the FrontEnd service, and then callable are the following:
+
+InsertJob: this is the method that allow the user to create a single task into the database
+h t t p : / / l o c a l h o s t : 8 0 8 0 / INFN . Gr id . FrontEnd / s e r v i c e s / QueryJob /
+I n s e r t J o b ?USERNAME={ us e rnameVa lue}&PASSWORD={ pa s swordVa lue}&
+NAME={ nameValue}&a rgument s ={ a rgument sVa lue }
+This method returns the xml type: XmlInsertJobs with information relating to the job added in the
+table TaskList.
+
+InsertJobs: this is the method that allow the user to create a multiple task into the database,each task is indetified by a different argument.
+Arguments are split using ";"
+
+h t t p : / / l o c a l h o s t : 8 0 8 0 / INFN . Gr id . FrontEnd / s e r v i c e s / QueryJob /
+I n s e r t J o b s ?USERNAME={ us e rnameVa lue}&PASSWORD={ pa s swordVa lue}&
+NAME={ nameValue}&a rgument s ={ h t t p : / / we b t e s t . ba . i n f n . i t / v i c a r i o /
+FinalFusar iumDB_2 . nex ArgOne ; h t t p : / / we b t e s t . ba . i n f n . i t /
+v i c a r i o / FinalFusar iumDB_1 . nex ArgTwo ; }
+
+This method returns the xml type: XmlInsertJobs with information relating to the jobs added in the table TaskList.
+
+
+SelectJob: this is the method that allow the user to get the status of a give task into the database, indentified by the "JobID" value
+
+h t t p : / / l o c a l h o s t : 8 0 8 0 / INFN . Gr id . FrontEnd / s e r v i c e s / QueryJob /
+S e l e c t J o b ?USERNAME={ us e rnameVa lue}&PASSWORD={ pa s swordVa lue}&
+I d J o b ={ I d J o bVa l u e }
+
+This method returns the xml type: XmlSelectJobs with information relating to the jobs searched in the table TaskList.
+
+SelectJobs: this is the method that allow the user to get the status of a list of task into the database, indentified by the "FLAG" value
+
+h t t p : / / l o c a l h o s t : 8 0 8 0 / INFN . Gr id . FrontEnd / s e r v i c e s / QueryJob /
+S e l e c t J o b s ?USERNAME={ us e rnameVa lue}&PASSWORD={ pa s swordVa lue}&
+FLAG={ Fl agVa lue }
+
+This method returns the xml type: XmlSelectJobs with information relating to the jobs searched inthe table TaskList.
+
+
+Here is an example of the structure of the XML that the FRONT-END service report to the user:
+
+XmlSe l e c t J o b s :
+<Jobs >
+  <Job >
+    <Arguments >Arg4 </ Arguments >
+    <Comment> l o c a l </Comment>
+  <CPUs>1 </CPUs>
+  <Flag >001 </ Flag >
+  <Id >4 </ Id >
+  <Las tCheck >2012-02-14 1 0 : 5 4 : 5 8 . 0 < /Las tCheck >
+  <Name> b l a s t 4 </Name>
+  <Output / >
+  <Provenanc e / >
+  < S t a t u s >done </ S t a t u s >
+  </ Job >
+</ Jobs >
+
+Xml I n s e r t J o b s :
+<Job >
+  <Name>NOME</Name>
+  <Flag >001 </ Flag >
+  <JobsID >
+    <JobId >12 </ JobId >
+    <JobId >13 </ JobId >
+  </ JobsID >
+</ Job >

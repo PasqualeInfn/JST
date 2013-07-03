@@ -1,0 +1,15 @@
+Using the MVC design pattern (Model View Control) were obtained at three distinct layers:
+
+• View
+• Business logic
+• Access to data
+
+Therefore they were written a series of libraries, opportunely referenced and integrated with each other.
+
+The main package is written:
+• Service: library, in FrontEnd package, containing the methods available to the service
+• XmlEntityLayer: dll to serialize / deserialize the XML response format of the service (Map of the responses in XML)
+• EntityLayer: dll file that maps the database tables
+• BusinessLayer: dll file containing the business logic for the management of the db and methods of service
+• DataLayer: dll containing classes and methods for accessing data in the db
+• Core: dll containing various utilities and functionality

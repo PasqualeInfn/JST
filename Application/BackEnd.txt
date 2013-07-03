@@ -1,0 +1,11 @@
+The application called "backend", written in Java, is a daemon constantly running. Based on a strategy MultiThread interfaces to DataBase to retrieve the job to be executed in the Grid, Local Farm or dedicated servers.
+The table TaskList is updated once the job was submitted.
+
+The BackEnd was made based MVC architecture and some dll files are shared with the FrontEnd.
+
+The main packages that BackEnd uses are:
+• EntityLayer: dll file that maps the database tables
+• BusinessLayer: dll file containing the business logic primarily for the management of the db and methods of the Submit Job
+• DataLayer: DLL containing classes and methods for accessing data in the db
+• MultiThread: dll for the management and scheduling of thread for the execution of the Job
+• Core: dll various utilities and functionality

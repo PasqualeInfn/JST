@@ -1,0 +1,13 @@
+The technologies used are:
+
+• Java Language
+• Framework Java EE 6.0 SDK
+• Framework Jarsey JAX-RS
+• Web Server: Apache TomCat
+• DBMS: MySql 5
+
+The macro-elements that make up the system are three:
+
+• Database: Job storage and configuration parameters
+• FrontEnd: Rest Services accessible from the outside
+• BackEnd: Application daemon that runs in the background for the job submission and scheduling
