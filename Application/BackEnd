@@ -1,11 +1,19 @@
-The application called "backend", written in Java, is a daemon constantly running. Based on a strategy MultiThread interfaces to DataBase to retrieve the job to be executed in the Grid, Local Farm or dedicated servers.
-The table TaskList is updated once the job was submitted.
+The application called "BackEnd" is a daemon, based on a MultiThread strategy, constantly
+running. It regularly queries the TaskList to understand if there are Jobs to be executed and, if
+there are, submits them to the computing resources for which it is configured.
+The behaviour of the BackEnd instance and of the Jobs depends from the type of submission.
 
-The BackEnd was made based MVC architecture and some dll files are shared with the FrontEnd.
+• Interactive instance or job submission on a dedicated server.
 
-The main packages that BackEnd uses are:
-• EntityLayer: dll file that maps the database tables
-• BusinessLayer: dll file containing the business logic primarily for the management of the db and methods of the Submit Job
-• DataLayer: DLL containing classes and methods for accessing data in the db
-• MultiThread: dll for the management and scheduling of thread for the execution of the Job
-• Core: dll various utilities and functionality
+Using the multithread characteristic of the BackEnd, the job is started in a newly created
+thread on the same server where the "BackEnd" is in execution. As soon as a job is started,
+the BackEnd takes care of updating the TaskList in order to remove that particular job from
+the list of job still to be executed.
+
+• All other cases
+In all other cases is the job itself, when it start executing on a Worker Node of the batch
+cluster, or on a worker node of the grid infrastructure or on a Cloud computing resource,
+that updates the TaskList information.
+In all case the BackEnd daemon checks regularly that all Job relative to the same InsertID have
+been successful completed. In this case it send to the user a notifications mail retrieving the
+required information (i.e. the user mail addresse) from the TaskList.
